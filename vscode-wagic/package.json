@@ -1,0 +1,82 @@
+{
+  "name": "vscode-wagic",
+  "displayName": "Wagic Syntax",
+  "description": "Syntax highlighting, autocompletion and bracket checking for Wagic card configuration files (.dat)",
+  "version": "1.0.0",
+  "publisher": "beho-dev",
+  "license": "GPL-2.0-only",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/beho-dev/WagicSyntaxPlugin"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "wagic",
+        "aliases": [
+          "Wagic",
+          "wagic"
+        ],
+        "extensions": [
+          ".dat"
+        ],
+        "firstLine": "\\[(card|/card)\\]|#AUTO_DEFINE",
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "wagic",
+        "scopeName": "source.wagic",
+        "path": "./syntaxes/wagic.tmLanguage.json"
+      }
+    ],
+    "configuration": {
+      "title": "Wagic Syntax",
+      "properties": {
+        "wagic.diagnostics.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable inline bracket and unknown-word diagnostics for Wagic files."
+        },
+        "wagic.diagnostics.reportUnknownWords": {
+          "type": "boolean",
+          "default": true,
+          "description": "Report unrecognised words on ability/text lines as warnings."
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "wagic.toggleDiagnostics",
+        "title": "Wagic: Toggle Inline Diagnostics"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "test": "mocha --ui tdd --timeout 10000 \"out/test/suite/**/*.test.js\""
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.11.5",
+    "@types/vscode": "^1.85.0",
+    "@vscode/test-electron": "^2.3.8",
+    "mocha": "^10.3.0",
+    "typescript": "^5.3.3"
+  },
+  "overrides": {
+    "serialize-javascript": "^7.0.5"
+  }
+}
