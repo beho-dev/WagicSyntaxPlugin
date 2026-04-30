@@ -267,7 +267,12 @@ export const allWords: string[] = [
     ]),
 ];
 
-/** Lines that should receive syntax analysis (prefixes that start a relevant line) */
+/**
+ * Lines that should receive syntax analysis (prefixes that start a relevant line).
+ * All entries MUST be lowercase because callers always compare against `.toLowerCase()` output.
+ * The TextMate grammar uses the uppercase literal `#AUTO_DEFINE` directly in its regex;
+ * the grammar is case-sensitive while the runtime code does a case-insensitive comparison.
+ */
 export const RELEVANT_LINE_PREFIXES: string[] = [
     "text=",
     "name=",

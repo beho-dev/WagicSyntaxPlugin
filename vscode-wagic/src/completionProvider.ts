@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { allWords, triggers, macros, RELEVANT_LINE_PREFIXES } from './wagicData';
+import { allWords, RELEVANT_LINE_PREFIXES } from './wagicData';
 
 /**
  * Characters that terminate a Wagic word token.
@@ -51,7 +51,7 @@ export class WagicCompletionProvider implements vscode.CompletionItemProvider {
     private readonly sortedWords: string[];
 
     constructor() {
-        this.sortedWords = [...allWords, ...triggers, ...macros].sort();
+        this.sortedWords = [...allWords].sort();
     }
 
     provideCompletionItems(
